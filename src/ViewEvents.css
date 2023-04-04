@@ -1,0 +1,113 @@
+.view-events {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 16px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto 32px auto;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+.search-icon {
+  color: #777;
+  font-size: 1.2rem;
+  margin-left: -28px;
+  margin-bottom: 15px;
+  /* Adjust this value to position the search icon */
+  cursor: pointer;
+}
+
+.events-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: calc(100vh - 228px); /* Adjust the value as needed */
+}
+
+.events-row {
+  display: flex;
+  gap: 16px;
+}
+
+.event {
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 200px;
+  max-height: 250px;
+}
+
+.event-description {
+  position: relative;
+  max-height: 64px;
+  overflow: hidden;
+}
+
+.event-description::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background-image: linear-gradient(transparent, #fff);
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tag {
+  background-color: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.left-arrow,
+.right-arrow {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 12px 24px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  background-color: #555;
+}

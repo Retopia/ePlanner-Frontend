@@ -1,0 +1,226 @@
+  .user-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .element {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #555;
+    color: #fff;
+    width: 100%;
+    max-width: 600px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .arrow {
+    font-size: 1.2rem;
+  }
+
+  .content {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    height: 0;
+    overflow: hidden;
+    transition: max-height 3.0s ease-in-out;
+  }
+
+  .content-open {
+    height: auto;
+    padding: 16px;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .content-closed {
+    height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+  }
+
+  .save-settings {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+
+  .my-events-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .example-event {
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 250px;
+    position: relative;
+  }
+
+  .event-date {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  .event-description {
+    position: relative;
+    max-height: 64px;
+    overflow: hidden;
+  }
+
+  .event-description::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 24px;
+    background-image: linear-gradient(transparent, #fff);
+  }
+
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    background-color: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .kebab-menu-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 1;
+  }
+
+  .kebab-menu {
+    position: absolute;
+    top: 24px;
+    right: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .kebab-menu-item {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: default;
+  }
+
+  .kebab-menu-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .kebab-menu-item.delete {
+    color: red;
+  }
+
+  .create-new-event {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 16px;
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.0em;
+  }
+
+  .error-widget {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 16px;
+    color: #721c24;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .event-name {
+    margin-top: -8px;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .event-location {
+    margin-top: -8px;
+    flex-grow: 1;
+    font-size: 0.9rem;
+    color: #777;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50%;
+    margin-left: 8px;
+  }
+
+  .success-widget {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 16px;
+    color: #155724;
+    width: 100%;
+    box-sizing: border-box;
+  }

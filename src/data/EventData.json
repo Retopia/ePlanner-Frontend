@@ -1,0 +1,223 @@
+[
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Basketball Tournament",
+    "description": "Join our annual basketball tournament and compete against other teams in a friendly and exciting environment. All skill levels are welcome!",
+    "location": "City Sports Center",
+    "time": "2023-04-15T09:00:00",
+    "visibility": "public",
+    "tags": [
+      "sports",
+      "basketball",
+      "tournament"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Charity Fun Run",
+    "description": "Participate in our charity fun run to support a good cause while getting some exercise. All proceeds will be donated to a local charity.",
+    "location": "Central Park",
+    "time": "2023-05-05T07:30:00",
+    "visibility": "public",
+    "tags": [
+      "charity",
+      "running",
+      "community"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Art Workshop",
+    "description": "Expand your creativity in our weekend art workshop, where experienced instructors will guide you through various painting techniques and styles.",
+    "location": "Downtown Art Studio",
+    "time": "2023-04-22T14:00:00",
+    "visibility": "public",
+    "tags": [
+      "art",
+      "painting",
+      "workshop"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Photography Exhibition",
+    "description": "Visit our photography exhibition showcasing the stunning works of local photographers. Explore different styles and themes in a beautiful gallery space.",
+    "location": "City Art Gallery",
+    "time": "2023-04-01T18:00:00",
+    "visibility": "public",
+    "tags": [
+      "photography",
+      "exhibition",
+      "art"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Yoga in the Park",
+    "description": "Relax and recharge with our weekly yoga sessions in the park. All levels are welcome, and our certified instructors will help you find your zen.",
+    "location": "Riverside Park",
+    "time": "2023-03-26T09:30:00",
+    "visibility": "public",
+    "tags": [
+      "yoga",
+      "wellness",
+      "outdoor"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Coding Bootcamp",
+    "description": "Develop your programming skills in our intensive coding bootcamp. Learn from experienced developers and build real-world projects to boost your portfolio.",
+    "location": "Tech Academy",
+    "time": "2023-05-10T10:00:00",
+    "visibility": "public",
+    "tags": [
+      "coding",
+      "programming",
+      "education"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Gardening Workshop",
+    "description": "Discover the joy of gardening in our hands-on workshop. Learn about planting, maintaining, and harvesting a variety of plants in your own garden.",
+    "location": "Green Thumb Garden Center",
+    "time": "2023-04-09T13:00:00",
+    "visibility": "public",
+    "tags": [
+      "gardening",
+      "workshop",
+      "plants"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Food and Wine Festival",
+    "description": "Indulge in a day of gourmet food and fine wines at our annual Food and Wine Festival. Sample local and international delicacies from various food vendors.",
+    "location": "City Square",
+    "time": "2023-05-20T11:00:00",
+    "visibility": "public",
+    "tags": [
+      "food",
+      "wine",
+      "festival"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Live Music Night",
+    "description": "Enjoy a night of live music featuring talented local bands and artists. Experience a variety of genres in a lively and dynamic atmosphere.",
+    "location": "The Music Den",
+    "time": "2023-04-29T20:00:00",
+    "visibility": "public",
+    "tags": [
+      "music",
+      "live",
+      "entertainment"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Book Club Meeting",
+    "description": "Join our monthly book club meeting where we discuss interesting reads and share our thoughts in a friendly and engaging environment.",
+    "location": "Local Library",
+    "time": "2023-04-06T19:00:00",
+    "visibility": "private",
+    "tags": [
+      "book club",
+      "reading",
+      "literature"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Stand-up Comedy Night",
+    "description": "Laugh out loud at our weekly stand-up comedy night featuring hilarious performances from both local and touring comedians.",
+    "location": "Laugh Factory",
+    "time": "2023-05-13T20:00:00",
+    "visibility": "public",
+    "tags": [
+      "comedy",
+      "stand-up",
+      "entertainment"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Outdoor Movie Night",
+    "description": "Bring your friends and family to our outdoor movie night, where we'll be screening a classic film under the stars.",
+    "location": "Community Park",
+    "time": "2023-04-21T19:30:00",
+    "visibility": "public",
+    "tags": [
+      "movies",
+      "outdoor",
+      "community"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Board Game Night",
+    "description": "Join us for a fun-filled evening of board games and socializing. Bring your favorite games or try out new ones in a friendly environment.",
+    "location": "Game Haven",
+    "time": "2023-05-01T18:00:00",
+    "visibility": "private",
+    "tags": [
+      "board games",
+      "social",
+      "fun"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Farmers Market",
+    "description": "Support local farmers and artisans at our weekly farmers market, where you can find fresh produce, handmade crafts, and delicious treats.",
+    "location": "Market Plaza",
+    "time": "2023-04-30T09:00:00",
+    "visibility": "public",
+    "tags": [
+      "farmers market",
+      "local",
+      "shopping"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Cooking Class",
+    "description": "Learn new culinary skills and techniques in our hands-on cooking class, taught by an experienced chef. All skill levels are welcome!",
+    "location": "Culinary Academy",
+    "time": "2023-05-04T18:00:00",
+    "visibility": "private",
+    "tags": [
+      "cooking",
+      "class",
+      "food"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Dance Workshop",
+    "description": "Get moving and grooving in our dance workshop, where you'll learn various styles and techniques from talented instructors. No experience necessary!",
+    "location": "Dance Studio",
+    "time": "2023-05-11T19:00:00",
+    "visibility": "public",
+    "tags": [
+      "dance",
+      "workshop",
+      "exercise"
+    ]
+  },
+  {
+    "creator": "6428976328ea38b5949e8c4e",
+    "title": "Language Exchange",
+    "description": "Practice speaking a new language with native speakers and fellow learners at our language exchange meetup. All languages and levels are welcome!",
+    "location": "Language Center",
+    "time": "2023-05-07T18:30:00",
+    "visibility": "private",
+    "tags": [
+      "language",
+      "exchange",
+      "culture"
+    ]
+  }
+]
