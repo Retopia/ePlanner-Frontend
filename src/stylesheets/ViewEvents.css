@@ -1,0 +1,153 @@
+.viewEvents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 16px;
+}
+
+.viewEventsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 80px);
+}
+
+.viewEventsSearchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto 32px auto;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.viewEventsSearchBar input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.viewEventsSearchIcon {
+  color: #777;
+  font-size: 1.2rem;
+  margin-left: -28px;
+  margin-bottom: 15px;
+  /* Adjust this value to position the search icon */
+  cursor: pointer;
+}
+
+.viewEventsGrid {
+  flex-direction: column;
+  height: calc(100vh - 228px);
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.viewEventsRow {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.viewEventsExampleEvent {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  width: 250px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+}
+
+.viewEventsEventTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.viewEventsTag {
+  background-color: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.viewEventsEventDescription::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background-image: linear-gradient(transparent, #fff);
+}
+
+.viewEventsEventName {
+  margin-top: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewEventsEventLocation {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.viewEventsEventDate {
+  margin-top: 0px;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.viewEventsEventDescription {
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.viewEventsPagination {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.viewEventsLeftArrow,
+.viewEventsRightArrow {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 12px 24px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.viewEventsLeftArrow:hover,
+.viewEventsRightArrow:hover {
+  background-color: #555;
+}

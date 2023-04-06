@@ -2,6 +2,11 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
+  // Weird bug with sessions and stuff?
+  if (localStorage.getItem('isAuthenticated') === 'true' && !localStorage.getItem('username')) {
+    localStorage.removeItem('isAuthenticated');
+  }
+
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   const username = localStorage.getItem('username');
   const navigate = useNavigate();

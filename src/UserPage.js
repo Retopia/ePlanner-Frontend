@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp, FaEllipsisV } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './UserPage.css';
+import './stylesheets/UserPage.css';
 
 function UserPage() {
     const [isProfileSettingsOpen, setIsProfileSettingsOpen] = useState(true);
@@ -73,9 +73,12 @@ function UserPage() {
     const fetchEvents = async () => {
         try {
             const response = await fetch(process.env.REACT_APP_SERVER + '/events', {
+                method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
                 },
+                body: JSON.stringify({ username: localStorage.getItem("username") }),
             });
 
             if (response.ok) {
@@ -93,9 +96,23 @@ function UserPage() {
         fetchEvents();
     }, []);
 
+    async function fetchEvent(eventId) {
+        const token = localStorage.getItem("accessToken");
+        const headers = token ? { "Authorization": `Bearer ${token}` } : {};
+
+        const url = `/view/events/${eventId}?`;
+        const res = await fetch(url, { headers });
+        const event = await res.json();
+
+        if (res.ok) {
+            return event;
+        } else {
+            throw new Error(event.error);
+        }
+    }
+
     // Event component
     const Event = ({ eventId, eventName, description, date, location, tags }) => {
-        const eventData = { eventId, eventName, description, date, location, tags };
         const [isKebabMenuOpen, setIsKebabMenuOpen] = useState(false);
 
         const formattedDate = new Date(date).toLocaleString('en-US', {
@@ -110,16 +127,40 @@ function UserPage() {
             hour12: true,
         });
 
+        const handleClick = async () => {
+            try {
+                await fetchEvent(eventId);
+                navigate(`/view/events/${eventId}`);
+            } catch (err) {
+                console.error(err.message);
+            }
+        };
+
+        const handleKebabMenuClick = (e) => {
+            e.stopPropagation();
+            setIsKebabMenuOpen(!isKebabMenuOpen);
+        };
+
+        const handleEditEventClick = (e) => {
+            e.stopPropagation();
+            navigate(`/events/edit/${eventId}`);
+        };
+
+        const handleDeleteEventClick = (e) => {
+            e.stopPropagation();
+            handleDeleteEvent(eventId);
+        };
+
         return (
-            <div className="example-event">
+            <div className="example-event" onClick={handleClick}>
                 <FaEllipsisV
                     className="kebab-menu-icon"
-                    onClick={() => setIsKebabMenuOpen(!isKebabMenuOpen)}
+                    onClick={handleKebabMenuClick}
                 />
                 {isKebabMenuOpen && (
                     <div className="kebab-menu">
-                        <div className="kebab-menu-item" onClick={() => navigate(`/events/${eventId}`)}>Edit Event</div>
-                        <div className="kebab-menu-item delete" onClick={() => handleDeleteEvent(eventId)}>Delete Event</div>
+                        <div className="kebab-menu-item" onClick={handleEditEventClick}>Edit Event</div>
+                        <div className="kebab-menu-item delete" onClick={handleDeleteEventClick}>Delete Event</div>
                     </div>
                 )}
                 <div className="event-header">
@@ -136,6 +177,7 @@ function UserPage() {
             </div>
         );
     };
+
 
     return (
         <div className="user-page">

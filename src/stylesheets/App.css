@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: center;
   min-height: 80vh;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('./assets/stock_photo.avif');
+  background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://i.imgur.com/GEjwQRo.jpg');
   background-size: cover;
   background-position: center;
 }

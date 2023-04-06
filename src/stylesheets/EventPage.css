@@ -1,0 +1,54 @@
+.eventPage {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+}
+
+.eventPageInnerContainer {
+    background-color: #ffffff;
+    padding: 30px;
+    max-height: calc(100% - 32px);
+    width: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.eventPageTitle {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.eventPageCreator,
+.eventPageLocation,
+.eventPageDate,
+.eventPageDescription {
+    margin-bottom: 8px;
+}
+
+.eventPageTags {
+    margin-bottom: 16px;
+}
+
+.eventPageTag {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.eventPageInvitedUsers,
+.eventPageEmbeddedFiles {
+    margin-bottom: 16px;
+}
+
+.eventPageInvitedUsers ul,
+.eventPageEmbeddedFiles ul {
+    margin-top: 4px;
+    margin-bottom: 0;
+}

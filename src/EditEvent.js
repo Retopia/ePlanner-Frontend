@@ -1,37 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './EditEvent.css';
+import './stylesheets/EditEvent.css';
 
 function EditEvent({ editMode }) {
   // Extract eventId from URL
   const { eventId } = useParams();
+  const [privateChecked, setPrivateChecked] = useState(false);
   const [eventDetails, setEventDetails] = useState({
     title: '',
     date: '',
     location: '',
     description: '',
     tags: [],
+    visibility: 'public',
   });
 
   const navigate = useNavigate();
 
+  // Handles the checkbox
+  useEffect(() => {
+    setEventDetails({ ...eventDetails, visibility: privateChecked ? 'private' : 'public' });
+  }, [privateChecked]);
+
   // Fetch event details when the component mounts
   useEffect(() => {
-    console.log('editMode:', editMode);
-    console.log('eventId:', eventId);
-
     const fetchEventDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/events/${eventId}`, {
+        const response = await fetch(`http://localhost:4000/events/edit/${eventId}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
           },
-        });
+        })
 
         if (response.ok) {
           const eventData = await response.json();
-
-          console.log(eventData);
 
           // Format the date string
           const formattedDate = new Date(eventData.time).toISOString().split('T')[0];
@@ -40,6 +42,7 @@ function EditEvent({ editMode }) {
             ...eventData,
             date: formattedDate,
           });
+
         } else {
           console.error('Failed to fetch event details');
         }
@@ -63,7 +66,7 @@ function EditEvent({ editMode }) {
     };
 
     const url = editMode
-      ? `http://localhost:4000/events/${eventDetails._id}`
+      ? `http://localhost:4000/events/edit/${eventDetails._id}`
       : 'http://localhost:4000/events/create';
     const method = editMode ? 'PUT' : 'POST';
 
@@ -97,9 +100,9 @@ function EditEvent({ editMode }) {
           value={eventDetails.title}
           onChange={(e) => setEventDetails({ ...eventDetails, title: e.target.value })}
         />
-        <label htmlFor="date">Date</label>
+        <label htmlFor="date">Date & Time</label>
         <input
-          type="date"
+          type="datetime-local"
           id="date"
           value={eventDetails.date}
           onChange={(e) => setEventDetails({ ...eventDetails, date: e.target.value })}
@@ -125,8 +128,22 @@ function EditEvent({ editMode }) {
           id="tags"
           placeholder="Comma Separated Tags Here"
           value={eventDetails.tags.join(', ')}
-          onChange={(e) => setEventDetails({ ...eventDetails, tags: e.target.value.split(',').map((tag) => tag.trim()) })}
+          onChange={(e) => setEventDetails({ ...eventDetails, tags: e.target.value.toLowerCase().split(',').map((tag) => tag.trim()) })}
         />
+        <label className="private-checkbox-label" htmlFor="private">
+          Private?
+          <input
+            type="checkbox"
+            id="private"
+            checked={eventDetails.visibility === 'private'}
+            onChange={(e) =>
+              setEventDetails({
+                ...eventDetails,
+                visibility: e.target.checked ? 'private' : 'public',
+              })
+            }
+          />
+        </label>
         <button type="submit">{editMode ? 'Update Event' : 'Create Event'}</button>
       </form>
     </div>
