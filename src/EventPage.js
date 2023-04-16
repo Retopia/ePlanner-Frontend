@@ -17,6 +17,7 @@ const EventPage = () => {
 
                 if (response.ok) {
                     const eventData = await response.json();
+                    console.log(eventData);
                     setEvent(eventData);
                 } else {
                     console.error('Failed to fetch event');
@@ -47,15 +48,10 @@ const EventPage = () => {
                 return (
                     <div className="eventPageInnerContainer">
                         <h2 className="eventPageTitle">{event.title}</h2>
-                        <p className="eventPageCreator">Created by: {event.creator.username}</p>
+                        <p className="eventPageCreator">Created by: {event.creator}</p>
                         <p className="eventPageLocation">Location: {event.location}</p>
                         <p className="eventPageDate">Date: {formattedDate} {formattedTime}</p>
                         <p className="eventPageDescription">{event.description}</p>
-                        <div className="eventPageTags">
-                            {event.tags.map((tag, index) => (
-                                <span key={index} className="eventPageTag">{tag}</span>
-                            ))}
-                        </div>
                         <div className="eventPageInvitedUsers">
                             <h4>Invited Users:</h4>
                             <ul>
@@ -65,14 +61,19 @@ const EventPage = () => {
                             </ul>
                         </div>
                         <div className="eventPageEmbeddedFiles">
-                            <h4>Embedded Files:</h4>
+                            <h4>Included Links:</h4>
                             <ul>
                                 {event.embeddedFiles.map((file, index) => (
                                     <li key={index}>
-                                        <a href={file.url} target="_blank" rel="noreferrer">{file.description || file.url}</a>
+                                        <a href={file.url} target="_blank" rel="noreferrer">{file.url}</a>{' - ' + file.description}
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                        <div className="eventPageTags">
+                            {event.tags.map((tag, index) => (
+                                <span key={index} className="eventPageTag">{tag}</span>
+                            ))}
                         </div>
                     </div>
                 );

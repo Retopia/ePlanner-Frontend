@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 80px);
+  min-height: 85vh;
 }
 
 .viewEventsSearchBar {
@@ -31,6 +31,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 15px;
+  flex: 0 0 750px;
 }
 
 .viewEventsSearchIcon {
@@ -38,17 +39,15 @@
   font-size: 1.2rem;
   margin-left: -28px;
   margin-bottom: 15px;
-  /* Adjust this value to position the search icon */
   cursor: pointer;
 }
 
 .viewEventsGrid {
-  flex-direction: column;
-  height: calc(100vh - 228px);
-  flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .viewEventsRow {
@@ -56,8 +55,10 @@
   gap: 16px;
   justify-content: center;
   flex-grow: 1;
+  flex-basis: calc(50% - 16px);
   margin-bottom: 16px;
 }
+
 
 .viewEventsExampleEvent {
   background-color: #fff;
@@ -132,7 +133,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .viewEventsLeftArrow,
@@ -150,4 +151,10 @@
 .viewEventsLeftArrow:hover,
 .viewEventsRightArrow:hover {
   background-color: #555;
+}
+
+@media (max-width: 768px) {
+  .viewEventsRow {
+    flex-basis: 100%;
+  }
 }

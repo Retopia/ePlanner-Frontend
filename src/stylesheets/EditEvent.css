@@ -60,3 +60,37 @@ textarea {
   margin-bottom: 0;
   width: 20px;
 }
+
+.edit-event-file-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  background-color: #fff;
+  padding: 0px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-event-file-link {
+  flex-grow: 1;
+  max-width: calc(100% - 150px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+.edit-event-file-type {
+  margin-left: 16px;
+  width: 120px;
+}
+
+.edit-event-add-file-btn {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.edit-event-remove-file-btn {
+  margin-left: 16px;
+}

@@ -132,7 +132,6 @@ function UserPage() {
                 await fetchEvent(eventId);
                 navigate(`/view/events/${eventId}`);
             } catch (err) {
-                console.error(err.message);
             }
         };
 
