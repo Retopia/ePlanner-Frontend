@@ -30,7 +30,7 @@ function EditEvent({ editMode }) {
   useEffect(() => {
     const fetchEventDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/events/edit/${eventId}`, {
+        const response = await fetch(process.env.REACT_APP_SERVER + `/events/edit/${eventId}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
           },
@@ -78,8 +78,8 @@ function EditEvent({ editMode }) {
     console.log(formattedEventDetails);
 
     const url = editMode
-      ? `http://localhost:4000/events/edit/${eventDetails._id}`
-      : 'http://localhost:4000/events/create';
+      ? process.env.REACT_APP_SERVER + `/events/edit/${eventDetails._id}`
+      : process.env.REACT_APP_SERVER + `/events/create`;
     const method = editMode ? 'PUT' : 'POST';
 
     const response = await fetch(url, {
