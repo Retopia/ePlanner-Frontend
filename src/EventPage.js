@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './stylesheets/EventPage.css';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const EventPage = () => {
     const [event, setEvent] = useState(null);
@@ -80,7 +81,9 @@ const EventPage = () => {
             })()}
         </div>
     ) : (
-        <div>Loading...</div>
+        <div className="eventPageLoadingContainer">
+            <CircularProgress />
+        </div>
     );
 };
 

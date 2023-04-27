@@ -10,11 +10,13 @@ import UserPage from './UserPage';
 import EditEvent from './EditEvent';
 import NotFound from './NotFound';
 import EventPage from './EventPage';
-import './stylesheets/App.css';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
+import styles from './stylesheets/App.module.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.app}>
       <Router>
         <Navbar />
         <Routes>
@@ -23,6 +25,8 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/view-events" element={<ViewEvents />} />
           <Route path="/events/view/:eventId" element={<EventPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/user-page" element={<ProtectedRoute><UserPage /></ProtectedRoute>} />
           {/* Handles all redirects accordingly for non-existent pages */}
           <Route path="*" element={<NotFound />} />

@@ -105,6 +105,9 @@ function LoginPage() {
         <form className="login-form" onSubmit={handleSubmit}>
           <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className="forgot-password-link" onClick={() => navigate('/forgot-password')}>
+            Forgot your password?
+          </div>
           <button type="submit">Submit</button>
         </form>
         <div className="divider"></div>

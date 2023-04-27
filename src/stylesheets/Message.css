@@ -1,0 +1,31 @@
+/* Message.css */
+.message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.message.success {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.message.failure {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.message-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

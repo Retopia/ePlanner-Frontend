@@ -1,8 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import './stylesheets/AddFileModal.css';
+import React, { useRef, useState, useEffect } from 'react';
+import styles from './stylesheets/AddFileModal.module.css';
 
-function AddFileModal({ show, handleClose, handleAddFile, selectedFile }) {
+function AddFileModal({ show, handleClose, handleBackdropClick, handleAddFile, selectedFile }) {
     const [file, setFile] = useState({ url: '', fileType: '', description: '' });
+
+    const modalRef = useRef();
+
+    useEffect(() => {
+        if (show) {
+            const handleClickOutside = (event) => {
+                if (modalRef.current && !modalRef.current.contains(event.target)) {
+                    handleBackdropClick(); // Close the modal when clicking outside of it
+                }
+            };
+
+            document.addEventListener('mouseup', handleClickOutside);
+            return () => {
+                document.removeEventListener('mouseup', handleClickOutside);
+            };
+        }
+    }, [show, handleBackdropClick]);
 
     useEffect(() => {
         console.log(selectedFile);
@@ -34,9 +51,9 @@ function AddFileModal({ show, handleClose, handleAddFile, selectedFile }) {
     }
 
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <h3>Add File</h3>
+        <div className={`${styles.modal} ${show ? styles.show : ''}`}>
+            <div className={styles['modal-content']} ref={modalRef}>
+                <h3 className={styles['modal-title']}>Add File</h3>
                 <input
                     type="text"
                     placeholder="File URL"
@@ -55,7 +72,7 @@ function AddFileModal({ show, handleClose, handleAddFile, selectedFile }) {
                     value={file.description}
                     onChange={(e) => setFile({ ...file, description: e.target.value })}
                 />
-                <div className="modal-buttons">
+                <div className={styles['modal-buttons']}>
                     <button onClick={handleSubmit}>Add File</button>
                     <button onClick={handleClose}>Cancel</button>
                 </div>

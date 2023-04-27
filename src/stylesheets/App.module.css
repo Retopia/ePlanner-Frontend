@@ -1,0 +1,346 @@
+/* App */
+.app {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #333;
+  border-bottom: 1px solid #444;
+  flex-wrap: wrap;
+}
+
+.nav-logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 24px;
+  border-left: 1px solid #666;
+  padding-left: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #ddd;
+}
+
+.kebab-menu {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 16px;
+}
+
+.kebab-line {
+  width: 24px;
+  height: 3px;
+  background-color: #fff;
+}
+
+/* Hero section */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('https://i.imgur.com/GEjwQRo.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-section h1 {
+  color: #333;
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.hero-section p {
+  color: #666;
+  font-size: 1.5rem;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* Button */
+.button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+/* Main content */
+main {
+  padding: 32px;
+}
+
+/* Sections */
+section {
+  margin-bottom: 48px;
+}
+
+section h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  background-color: #333;
+  color: #fff;
+}
+
+/* Testimonials */
+.testimonials {
+  text-align: center;
+  background-color: #e3e3e3;
+  padding: 40px;
+  padding-top: 15px;
+  border-radius: 4px;
+}
+
+.testimonial {
+  width: 30%;
+  background-color: #fff;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.testimonial-message {
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.testimonial-name {
+  font-weight: bold;
+}
+
+/* Event Categories */
+.event-categories {
+  padding: 24px;
+  padding-bottom: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-categories h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.search-container {
+  width: 30%;
+  position: relative;
+  display: flex;
+}
+
+.category-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  min-height: 28px;
+}
+
+.selected-category {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 4px 8px;
+}
+
+.category-text {
+  vertical-align: 10%;
+}
+
+.remove-category-btn {
+  background-color: transparent;
+  border: none;
+  color: #777;
+  margin-left: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.remove-category-btn:hover {
+  color: #333;
+}
+
+.search-btn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 1.25rem;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.category-grid {
+  width: 30%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 13px;
+}
+
+.category-widget {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.category-widget:hover,
+.category-widget.selected {
+  background-color: #555;
+}
+
+.welcome-back {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-left: 24px;
+  border-left: 1px solid #666;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  color: #ddd;
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 600px) {
+
+  /* Fix testimonial spacing */
+  .testimonial {
+    width: 80%;
+    margin-bottom: 18px;
+  }
+
+  .testimonial-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Fix hero section spacing */
+  .hero-section {}
+
+  .hero-section h1 {
+    color: #333;
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .hero-section p {
+    color: #666;
+    font-size: 1.4rem;
+  }
+
+  /* Hide nav-links and display kebab-menu on mobile and tablet screens */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    z-index: 1000;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .kebab-menu {
+    display: flex;
+    background-color: #333;
+  }
+
+  .nav-links li {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    width: 100%;
+    padding: 8px 16px;
+  }
+
+  .nav-links li:hover {
+    background-color: #777;
+  }
+
+  .nav-links a {
+    width: 100%;
+  }
+}

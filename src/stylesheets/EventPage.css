@@ -4,14 +4,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 80px;
     box-sizing: border-box;
 }
 
 .eventPageInnerContainer {
     background-color: #ffffff;
     padding: 30px;
-    max-height: calc(100% - 32px);
+    max-height: calc(100% - 32px);  
     width: 90vh;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
@@ -47,4 +46,11 @@
 .eventPageEmbeddedFiles ul {
     margin-top: 4px;
     margin-bottom: 0;
+}
+
+.eventPageLoadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }

@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './stylesheets/ViewEvents.css';
+import CircularProgress from '@mui/material/CircularProgress';
+import DOMPurify from 'dompurify';
+import styles from './stylesheets/ViewEvents.module.css';
 
 function ViewEvents() {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
     const [eventsData, setEventsData] = useState([]);
-    const eventsPerPage = 8;
+    const [loading, setLoading] = useState(true);
+    const eventsPerPage = window.innerWidth <= 768 ? 2 : 8;
     const navigate = useNavigate();
+
+    // Added DOMPurify to protect from XSS attacks
+    function highlightSearchTerm(text, searchTerm) {
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        const sanitizedHTML = DOMPurify.sanitize(text.replace(regex, '<mark>$1</mark>'));
+        return { __html: sanitizedHTML };
+    }
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -17,6 +27,7 @@ function ViewEvents() {
                 const data = await response.json();
                 setEventsData(data);
                 console.log(data);
+                setLoading(false);
             } catch (err) {
                 console.error(err);
             }
@@ -66,14 +77,14 @@ function ViewEvents() {
         };
 
         return (
-            <div className="viewEventsExampleEvent" onClick={handleClick}>
-                <h3 className="viewEventsEventName">{title}</h3>
-                <p className="viewEventsEventDate">{`${formattedDate} ${formattedTime}`}</p>
-                <p className="viewEventsEventLocation">{location}</p>
-                <p className="viewEventsEventDescription">{description}</p>
-                <div className="viewEventsEventTags">
+            <div className={styles['event']} onClick={handleClick}>
+                <h3 className={styles['event-name']} dangerouslySetInnerHTML={highlightSearchTerm(title, searchQuery)}></h3>
+                <p className={styles['event-date']}>{`${formattedDate} ${formattedTime}`}</p>
+                <p className={styles['event-location']}>{location}</p>
+                <p className={styles['event-description']} dangerouslySetInnerHTML={highlightSearchTerm(description, searchQuery)}></p>
+                <div className={styles['event-tag-container']}>
                     {tags?.map((tag, index) => (
-                        <span key={index} className="viewEventsTag">{tag}</span>
+                        <span key={index} className={styles['event-tag']}>{tag}</span>
                     ))}
                 </div>
             </div>
@@ -91,7 +102,9 @@ function ViewEvents() {
         );
 
         setFilteredEvents(searchResults);
+        setCurrentPage(1); // Reset currentPage to 1 when searchQuery is updated
     }, [searchQuery, eventsData]);
+
 
     const changePage = (direction) => {
         setCurrentPage((prevPage) => prevPage + direction);
@@ -102,30 +115,36 @@ function ViewEvents() {
     const eventsToDisplay = filteredEvents.length ? filteredEvents.slice(startIndex, endIndex) : eventsData.slice(startIndex, endIndex);
 
     return (
-        <div className="viewEvents">
-            <div className="viewEventsContainer">
-                <div className="viewEventsSearchBar">
-                    <input type="text" placeholder="Search events" onChange={e => setSearchQuery(e.target.value)} />
-                    <FaSearch className="viewEventsSearchIcon" />
+        <div className={styles['view-events']}>
+            {loading ? (
+                <div className={styles['loading-container']}>
+                    <CircularProgress />
                 </div>
-                <div className="viewEventsGrid">
-                    {Array(Math.ceil(eventsToDisplay.length / 4)).fill(0).map((_, rowIndex) => (
-                        <div key={rowIndex} className="viewEventsRow">
-                            {eventsToDisplay.slice(rowIndex * 4, rowIndex * 4 + 4).map((event, colIndex) => (
-                                <Event
-                                    key={`${rowIndex}-${colIndex}`}
-                                    event={event}
-                                />
-                            ))}
-                        </div>
-                    ))}
+            ) : (
+                <div className={styles['event-container']}>
+                    <div className={styles['search-bar']}>
+                        <input type="text" placeholder="Search events" onChange={e => setSearchQuery(e.target.value)} />
+                        <FaSearch className={styles['search-icon']} />
+                    </div>
+                    <div className={styles['event-grid']}>
+                        {Array(Math.ceil(eventsToDisplay.length / 4)).fill(0).map((_, rowIndex) => (
+                            <div key={rowIndex} className={styles['event-row']}>
+                                {eventsToDisplay.slice(rowIndex * 4, rowIndex * 4 + 4).map((event, colIndex) => (
+                                    <Event
+                                        key={`${rowIndex}-${colIndex}`}
+                                        event={event}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <div className={styles['event-pagination']}>
+                        <button className={styles['event-pagination-left']} onClick={() => changePage(-1)} disabled={currentPage === 1}>&lt;</button>
+                        <span>{currentPage}</span>
+                        <button className={styles['event-pagination-right']} onClick={() => changePage(1)} disabled={currentPage === Math.ceil(filteredEvents.length / eventsPerPage)}>&gt;</button>
+                    </div>
                 </div>
-                <div className="viewEventsPagination">
-                    <button className="viewEventsLeftArrow" onClick={() => changePage(-1)} disabled={currentPage === 1}>&lt;</button>
-                    <span className="current-page">{currentPage}</span>
-                    <button className="viewEventsRightArrow" onClick={() => changePage(1)} disabled={currentPage === Math.ceil(filteredEvents.length / eventsPerPage)}>&gt;</button>
-                </div>
-            </div>
+            )}
         </div>
     );
 }

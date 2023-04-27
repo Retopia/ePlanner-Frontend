@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp, FaEllipsisV } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import './stylesheets/UserPage.css';
+import styles from './stylesheets/UserPage.module.css';
 
 function UserPage() {
     const [isProfileSettingsOpen, setIsProfileSettingsOpen] = useState(true);
@@ -151,26 +151,26 @@ function UserPage() {
         };
 
         return (
-            <div className="example-event" onClick={handleClick}>
+            <div className={styles['event']} onClick={handleClick}>
                 <FaEllipsisV
-                    className="kebab-menu-icon"
+                    className={styles['kebab-menu-icon']}
                     onClick={handleKebabMenuClick}
                 />
                 {isKebabMenuOpen && (
-                    <div className="kebab-menu">
-                        <div className="kebab-menu-item" onClick={handleEditEventClick}>Edit Event</div>
-                        <div className="kebab-menu-item delete" onClick={handleDeleteEventClick}>Delete Event</div>
+                    <div className={styles['kebab-menu']}>
+                        <div className={styles['kebab-menu-item']} onClick={handleEditEventClick}>Edit Event</div>
+                        <div className={styles['kebab-menu-item-delete']} onClick={handleDeleteEventClick}>Delete Event</div>
                     </div>
                 )}
-                <div className="event-header">
-                    <h3 className="event-name">{eventName}</h3>
-                    <p className="event-location">{location}</p>
+                <div className={styles['event-header']}>
+                    <h3 className={styles['event-name']}>{eventName}</h3>
+                    <p className={styles['event-location']}>{location}</p>
                 </div>
-                <p className="event-date">{`${formattedDate} ${formattedTime}`}</p>
-                <p className="event-description">{description}</p>
-                <div className="event-tags">
+                <p className={styles['event-date']}>{`${formattedDate} ${formattedTime}`}</p>
+                <p className={styles['event-description']}>{description}</p>
+                <div className={styles['event-tags']}>
                     {tags.map((tag, index) => (
-                        <span key={index} className="tag">{tag}</span>
+                        <span key={index} className={styles['tag']}>{tag}</span>
                     ))}
                 </div>
             </div>
@@ -179,39 +179,39 @@ function UserPage() {
 
 
     return (
-        <div className="user-page">
-            <div className="element" onClick={() => setIsProfileSettingsOpen(!isProfileSettingsOpen)}>
+        <div className={styles['user-page']}>
+            <div className={styles['element']} onClick={() => setIsProfileSettingsOpen(!isProfileSettingsOpen)}>
                 <span>Profile Settings</span>
                 {isProfileSettingsOpen ? (
-                    <FaChevronUp className="arrow" />
+                    <FaChevronUp className={styles['arrow']} />
                 ) : (
-                    <FaChevronDown className="arrow" />
+                    <FaChevronDown className={styles['arrow']} />
                 )}
             </div>
             {isProfileSettingsOpen && (
-                <div className={`content ${isProfileSettingsOpen ? 'content-open' : 'content-closed'}`}>
+                <div className={`${styles['content']} ${isProfileSettingsOpen ? styles['content-open'] : styles['content-closed']}`}>
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" value={username} onChange={handleUsernameChange} />
                     <label htmlFor="old-password">Old Password</label>
                     <input type="password" id="old-password" onChange={handleOldPasswordChange} disabled={localStorage.getItem("isGoogleUser") === "true"} />
                     <label htmlFor="new-password">New Password</label>
                     <input type="password" id="new-password" value={newPassword} onChange={handleNewPasswordChange} disabled={localStorage.getItem("isGoogleUser") === "true"} />
-                    {errorMessage && <div className="error-widget">{errorMessage}</div>}
-                    <button className="save-settings" onClick={handleSaveSettings}>Save Settings</button>
+                    {errorMessage && <div className={styles['error-widget']}>{errorMessage}</div>}
+                    <button className={styles['save-settings']} onClick={handleSaveSettings}>Save Settings</button>
                 </div>
             )}
 
-            <div className="element" onClick={() => setIsMyEventsOpen(!isMyEventsOpen)}>
+            <div className={styles['element']} onClick={() => setIsMyEventsOpen(!isMyEventsOpen)}>
                 <span>My Events</span>
                 {isMyEventsOpen ? (
-                    <FaChevronUp className="arrow" />
+                    <FaChevronUp className={styles['arrow']} />
                 ) : (
-                    <FaChevronDown className="arrow" />
+                    <FaChevronDown className={styles['arrow']} />
                 )}
             </div>
             {isMyEventsOpen && (
-                <div className={`content ${isMyEventsOpen ? 'content-open' : 'content-closed'}`}>
-                    <div className="my-events-grid">
+                <div className={`${styles['content']} ${isMyEventsOpen ? styles['content-open'] : styles['content-closed']}`}>
+                    <div className={styles['my-events-grid']}>
                         {events.map((event) => (
                             <Event
                                 key={event._id}
@@ -224,7 +224,7 @@ function UserPage() {
                             />
                         ))}
                     </div>
-                    <button className="create-new-event" onClick={() => navigate('/events/create')}>
+                    <button className={styles['create-new-event']} onClick={() => navigate('/events/create')}>
                         Create New Event
                     </button>
                 </div>

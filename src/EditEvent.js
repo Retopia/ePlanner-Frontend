@@ -9,6 +9,8 @@ function EditEvent({ editMode }) {
   const [privateChecked, setPrivateChecked] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [showAddFileModal, setShowAddFileModal] = useState(false);
+  const [isForbidden, setIsForbidden] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [eventDetails, setEventDetails] = useState({
     title: '',
     date: '',
@@ -34,7 +36,10 @@ function EditEvent({ editMode }) {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
           },
-        })
+        });
+
+        // Update loading state
+        setIsLoading(false);
 
         if (response.ok) {
           const eventData = await response.json();
@@ -48,8 +53,10 @@ function EditEvent({ editMode }) {
             ...eventData,
             date: formattedDate,
           });
-
         } else {
+          if (response.status === 403) {
+            setIsForbidden(true); // Update the isForbidden state
+          }
           console.error('Failed to fetch event details');
         }
       } catch (err) {
@@ -74,7 +81,7 @@ function EditEvent({ editMode }) {
       embeddedFiles: eventDetails.embeddedFiles,
     };
 
-    
+
     console.log(formattedEventDetails);
 
     const url = editMode
@@ -122,97 +129,116 @@ function EditEvent({ editMode }) {
     setEventDetails({ ...eventDetails, embeddedFiles: newEmbeddedFiles });
   };
 
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <div className="edit-event">
-      <h2>{editMode ? 'Edit Event' : 'Create New Event'}</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          id="title"
-          placeholder="My Super Awesome Event!"
-          value={eventDetails.title}
-          onChange={(e) => setEventDetails({ ...eventDetails, title: e.target.value })}
-        />
-        <label htmlFor="date">Date & Time</label>
-        <input
-          type="datetime-local"
-          id="date"
-          value={eventDetails.date}
-          onChange={(e) => setEventDetails({ ...eventDetails, date: e.target.value })}
-        />
-        <label htmlFor="location">Location</label>
-        <input
-          type="text"
-          id="location"
-          placeholder="Event Location"
-          value={eventDetails.location}
-          onChange={(e) => setEventDetails({ ...eventDetails, location: e.target.value })}
-        />
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          placeholder="Event Description"
-          value={eventDetails.description}
-          onChange={(e) => setEventDetails({ ...eventDetails, description: e.target.value })}
-        />
-        <label>Add Files</label>
-        {eventDetails.embeddedFiles.map((file, index) => (
-          <div
-            key={index}
-            className="edit-event-file-row"
-            onDoubleClick={() => handleEditFileLink(index, file)}
-          >
-            <span className="edit-event-file-link">{file.url.length > 20 ? `${file.url.substring(0, 20)}...` : file.url}</span>
-            <span className="edit-event-file-type">{file.fileType}</span>
-            <button className="edit-event-remove-file-btn" type="button" onClick={() => removeFileLink(index)}>
-              X
+      {isForbidden ? (
+        <div className="forbidden-message">
+          <h2>Forbidden</h2>
+          <p>You are not allowed to edit this event.</p>
+        </div>
+      ) : (
+        <>
+          <h2>{editMode ? 'Edit Event' : 'Create New Event'}</h2>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              placeholder="My Super Awesome Event!"
+              value={eventDetails.title}
+              onChange={(e) => setEventDetails({ ...eventDetails, title: e.target.value })}
+            />
+            <label htmlFor="date">Date & Time</label>
+            <input
+              type="datetime-local"
+              id="date"
+              value={eventDetails.date}
+              onChange={(e) => setEventDetails({ ...eventDetails, date: e.target.value })}
+            />
+            <label htmlFor="location">Location</label>
+            <input
+              type="text"
+              id="location"
+              placeholder="Event Location"
+              value={eventDetails.location}
+              onChange={(e) => setEventDetails({ ...eventDetails, location: e.target.value })}
+            />
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              placeholder="Event Description"
+              value={eventDetails.description}
+              onChange={(e) => setEventDetails({ ...eventDetails, description: e.target.value })}
+            />
+            <label>Add Files</label>
+            {eventDetails.embeddedFiles.map((file, index) => (
+              <div
+                key={index}
+                className="edit-event-file-row"
+                onDoubleClick={() => handleEditFileLink(index, file)}
+              >
+                <span className="edit-event-file-link">{file.url.length > 20 ? `${file.url.substring(0, 20)}...` : file.url}</span>
+                <span className="edit-event-file-type">{file.fileType}</span>
+                <button
+                  className="edit-event-remove-file-btn"
+                  type="button"
+                  onClick={(e) => removeFileLink(index)}
+                  onDoubleClick={(e) => e.stopPropagation()}
+                >
+                  X
+                </button>
+              </div>
+            ))}
+            <button className="edit-event-add-file-btn" type="button" onClick={() => setShowAddFileModal(true)}>
+              Add File
             </button>
-          </div>
-        ))}
-        <button className="edit-event-add-file-btn" type="button" onClick={() => setShowAddFileModal(true)}>
-          Add File
-        </button>
-        <AddFileModal
-          show={showAddFileModal}
-          handleClose={() => {
-            setShowAddFileModal(false);
-            setSelectedFile(null);
-          }}
-          handleAddFile={(file) => {
-            if (selectedFile) {
-              handleFileLinkChange(selectedFile.index, 'url', file.url);
-              handleFileLinkChange(selectedFile.index, 'fileType', file.fileType);
-            } else {
-              addFileLink(file);
-            }
-          }}
-          selectedFile={selectedFile}
-        />
-        <label htmlFor="tags">Tags</label>
-        <input
-          type="text"
-          id="tags"
-          placeholder="Comma Separated Tags Here"
-          value={eventDetails.tags.join(', ')}
-          onChange={(e) => setEventDetails({ ...eventDetails, tags: e.target.value.toLowerCase().split(',').map((tag) => tag.trim()) })}
-        />
-        <label className="private-checkbox-label" htmlFor="private">
-          Private?
-          <input
-            type="checkbox"
-            id="private"
-            checked={eventDetails.visibility === 'private'}
-            onChange={(e) =>
-              setEventDetails({
-                ...eventDetails,
-                visibility: e.target.checked ? 'private' : 'public',
-              })
-            }
-          />
-        </label>
-        <button type="submit">{editMode ? 'Update Event' : 'Create Event'}</button>
-      </form>
+            <AddFileModal
+              show={showAddFileModal}
+              handleClose={() => {
+                setShowAddFileModal(false);
+                setSelectedFile(null);
+              }}
+              handleBackdropClick={() => setShowAddFileModal(false)} // Close modal when click out of it
+              handleAddFile={(file) => {
+                if (selectedFile) {
+                  handleFileLinkChange(selectedFile.index, 'url', file.url);
+                  handleFileLinkChange(selectedFile.index, 'fileType', file.fileType);
+                } else {
+                  addFileLink(file);
+                }
+              }}
+              selectedFile={selectedFile}
+            />
+            <label htmlFor="tags">Tags</label>
+            <input
+              type="text"
+              id="tags"
+              placeholder="Comma Separated Tags Here"
+              value={eventDetails.tags.join(', ')}
+              onChange={(e) => setEventDetails({ ...eventDetails, tags: e.target.value.toLowerCase().split(',').map((tag) => tag.trim()) })}
+            />
+            <label className="private-checkbox-label" htmlFor="private">
+              Private?
+              <input
+                type="checkbox"
+                id="private"
+                checked={eventDetails.visibility === 'private'}
+                onChange={(e) =>
+                  setEventDetails({
+                    ...eventDetails,
+                    visibility: e.target.checked ? 'private' : 'public',
+                  })
+                }
+              />
+            </label>
+            <button type="submit">{editMode ? 'Update Event' : 'Create Event'}</button>
+          </form>
+        </>
+      )}
     </div>
   );
 }
