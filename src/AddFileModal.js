@@ -39,7 +39,7 @@ function AddFileModal({ show, handleClose, handleBackdropClick, handleAddFile, s
     }, [selectedFile]);
 
     const handleSubmit = () => {
-        if (file.url != '' && file.fileType != '') {
+        if (file.url !== '' && file.fileType !== '') {
             handleAddFile(file);
             setFile({ url: '', fileType: '', description: '' });
             handleClose();

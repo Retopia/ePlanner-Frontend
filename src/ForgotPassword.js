@@ -8,11 +8,24 @@ function ForgotPassword() {
     const [message, setMessage] = useState('');
     const [emailSent, setEmailSent] = useState(false);
 
+    const checkGoogleUser = async (email) => {
+        const response = await fetch(process.env.REACT_APP_SERVER + `/is-google-user/${email}`);
+        const data = await response.json();
+        return data.isGoogleUser;
+    };
+
     const handleSendEmail = async (event) => {
         event.preventDefault();
 
         if (!captcha) {
             setMessage('Error: Please complete the captcha first');
+            return;
+        }
+
+        // Google user checking
+        const isGoogleUser = await checkGoogleUser(email);
+        if (isGoogleUser) {
+            setMessage('Cannot reset password of Google user');
             return;
         }
 

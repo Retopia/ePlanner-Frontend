@@ -343,4 +343,8 @@ section h2 {
   .nav-links a {
     width: 100%;
   }
+
+  .navbar .welcome-back {
+    display: none;
+  }
 }

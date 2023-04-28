@@ -47,15 +47,13 @@ function EditEvent({ editMode }) {
           // Format the date string
           const formattedDate = new Date(eventData.time).toISOString().replace("Z", "");
 
-          console.log(eventData);
-
           setEventDetails({
             ...eventData,
             date: formattedDate,
           });
         } else {
           if (response.status === 403) {
-            setIsForbidden(true); // Update the isForbidden state
+            setIsForbidden(true);
           }
           console.error('Failed to fetch event details');
         }
@@ -66,13 +64,15 @@ function EditEvent({ editMode }) {
 
     if (editMode && eventId) {
       fetchEventDetails();
+    } else {
+      // If it's event creation there's no need to fetch
+      setIsLoading(false);
     }
+
   }, [editMode, eventId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log(eventDetails);
 
     const formattedEventDetails = {
       ...eventDetails,
@@ -80,9 +80,6 @@ function EditEvent({ editMode }) {
       tags: eventDetails.tags.filter((tag) => tag !== ''), // Filter out empty tags
       embeddedFiles: eventDetails.embeddedFiles,
     };
-
-
-    console.log(formattedEventDetails);
 
     const url = editMode
       ? process.env.REACT_APP_SERVER + `/events/edit/${eventDetails._id}`
